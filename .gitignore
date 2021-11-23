@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Logs, core files
+*.e
+*.o
+core*
