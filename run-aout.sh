@@ -14,9 +14,9 @@
 
 #spack load llvm /biqe
 #module restore cuda
-#module restore intel 
+module restore intel 
 #spack load llvm/k3i
-#module load Nsight-Systems # system-wide profiler, including CPUs metrics
+module load Nsight-Systems # system-wide profiler, including CPUs metrics
 
 # this is needed RTL
 export LD_LIBRARY_PATH=$PROJECT/kitayama1/dev/clang/lib:$LD_LIBRARY_PATH
