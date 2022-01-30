@@ -12,16 +12,13 @@
 ##SBATCH --partition=dc-gpu
 ##SBATCH --partition=dc-cpu-devel
 
-#spack load llvm /biqe
-#module restore cuda
-module restore intel 
-#spack load llvm/k3i
+module restore cuda
 module load Nsight-Systems # system-wide profiler, including CPUs metrics
 
 # this is needed RTL
 export LD_LIBRARY_PATH=$PROJECT/kitayama1/dev/clang/lib:$LD_LIBRARY_PATH
 export OMP_NUM_THREADS=1
-export OMP_TARGET_OFFLOAD=enabled
+#export OMP_TARGET_OFFLOAD=enabled
 export LIBOMPTARGET_DEBUG=1
 # enable every flag run with every bit set
 #export LIBOMPTARGET_INFO=-1
