@@ -25,7 +25,7 @@ int main() {
 #pragma omp target
 {
   Base *p = new Derived();
-  p->send();
+  p->send(); // ok as new is called in the target region
 }
 
   auto pBase = (Base*)llvm_omp_target_alloc_shared(sizeof(Derived), 0);
@@ -34,7 +34,7 @@ int main() {
 
 #pragma omp target is_device_ptr(pBase)
 {
-  pBase->send();
+  pBase->send(); // ok pointer pBase can be used both on host and device
 }
 
   auto p2 = (void*)llvm_omp_target_alloc_shared(sizeof(Derived), 0);
@@ -43,7 +43,8 @@ int main() {
 
 #pragma omp target
 {
-  reinterpret_cast<Derived*>(p2)->send();
+  reinterpret_cast<Derived*>(p2)->send(); // ok by casting note there's no is_device_prt()
+
 }
 
   return 0;
